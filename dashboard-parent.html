@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard - Chyfem Great Academy</title>
+    <link rel="stylesheet" href="portal-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="dashboard-header">
+                <div class="logo">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">CHYFEM</span>
+                </div>
+            </div>
+            
+            <nav class="dashboard-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">👶</span>
+                    <span>My Children</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Academic Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">✅</span>
+                    <span>Attendance</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Payments</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Events</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Messages</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="dashboard-footer">
+                <button class="logout-btn" id="logoutBtn">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-topbar">
+                <div class="welcome-text">
+                    <h1>Welcome, <span id="welcomeName">Parent</span>!</h1>
+                    <p>Stay connected with your children's education</p>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">P</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">Parent Name</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Parent/Guardian</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <!-- Children Overview Cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                    <div class="dashboard-card" style="border-left: 5px solid #ff6b9d;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                            <div>
+                                <h3 style="font-size: 1.8rem; color: var(--dark); margin-bottom: 0.3rem;">Emma Smith</h3>
+                                <p style="color: var(--text-light);">Nursery Section • Nursery 2</p>
+                            </div>
+                            <div style="font-size: 3rem;">👧</div>
+                        </div>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-light);">Teacher:</span>
+                                <span style="font-weight: 600;">Mrs. Brown</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-light);">Attendance:</span>
+                                <span style="font-weight: 600; color: #28a745;">98%</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-light);">Overall Progress:</span>
+                                <span style="font-weight: 600; color: var(--primary);">Excellent</span>
+                            </div>
+                        </div>
+                        <button style="width: 100%; margin-top: 1.5rem; padding: 0.8rem; background: #ff6b9d; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">View Full Report</button>
+                    </div>
+                    
+                    <div class="dashboard-card" style="border-left: 5px solid #4ecdc4;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                            <div>
+                                <h3 style="font-size: 1.8rem; color: var(--dark); margin-bottom: 0.3rem;">Oliver Smith</h3>
+                                <p style="color: var(--text-light);">Primary Section • Grade 1</p>
+                            </div>
+                            <div style="font-size: 3rem;">👦</div>
+                        </div>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-light);">Teacher:</span>
+                                <span style="font-weight: 600;">Mr. Wilson</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-light);">Attendance:</span>
+                                <span style="font-weight: 600; color: #28a745;">95%</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: var(--text-light);">Average Grade:</span>
+                                <span style="font-weight: 600; color: var(--primary);">88% (B+)</span>
+                            </div>
+                        </div>
+                        <button style="width: 100%; margin-top: 1.5rem; padding: 0.8rem; background: #4ecdc4; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">View Full Report</button>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions & Payment Status -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <!-- Upcoming Events -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📅 Upcoming Events</h3>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary);">🏃 Sports Day</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">All students participate in annual sports competition</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600;">Feb 20</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">2026</div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary);">👨‍👩‍👧 Parent-Teacher Meeting</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Discuss your children's progress with teachers</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600;">Feb 22</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">2026</div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary);">🎭 School Concert</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Annual talent showcase featuring all sections</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600;">Feb 28</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">2026</div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary);">📝 Mid-term Exams Begin</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Exam period for primary and college sections</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600;">Mar 1</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">2026</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Status -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">💰 Payments</h3>
+                        <div style="margin-bottom: 1.5rem; padding: 1rem; background: #d4edda; border-radius: 10px;">
+                            <div style="font-weight: 600; color: #155724;">Tuition - Term 2</div>
+                            <div style="margin-top: 0.5rem; font-size: 1.5rem; font-weight: bold; color: #155724;">$500</div>
+                            <span class="badge badge-success" style="margin-top: 0.5rem;">Paid</span>
+                        </div>
+                        <div style="padding: 1rem; background: #fff3cd; border-radius: 10px;">
+                            <div style="font-weight: 600; color: #856404;">Books & Materials</div>
+                            <div style="margin-top: 0.5rem; font-size: 1.5rem; font-weight: bold; color: #856404;">$150</div>
+                            <span class="badge badge-warning" style="margin-top: 0.5rem;">Pending</span>
+                            <button style="width: 100%; margin-top: 1rem; padding: 0.6rem; background: #ffc107; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">Pay Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Messages & Notifications -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <!-- Messages -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">💬 Recent Messages</h3>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Mrs. Brown (Emma's Teacher)</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Emma is showing great improvement in her social skills...</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">2 days ago</div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Mr. Wilson (Oliver's Teacher)</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Please remind Oliver to complete his reading assignment...</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">1 week ago</div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">School Administration</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Reminder: Parent-teacher conference next week...</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">1 week ago</div>
+                        </div>
+                        <button style="width: 100%; margin-top: 1rem; padding: 0.8rem; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer;">View All Messages</button>
+                    </div>
+                    
+                    <!-- Academic Progress -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📊 Academic Highlights</h3>
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="font-weight: 600; margin-bottom: 0.8rem;">Emma - Nursery 2</div>
+                            <div style="margin-bottom: 0.5rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.9rem;">Social Skills</span>
+                                    <span style="font-size: 0.9rem; color: var(--primary);">Excellent</span>
+                                </div>
+                                <div class="progress-bar" style="height: 6px;">
+                                    <div class="progress-fill" data-width="95" style="width: 0; background: #28a745;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.9rem;">Motor Skills</span>
+                                    <span style="font-size: 0.9rem; color: var(--primary);">Very Good</span>
+                                </div>
+                                <div class="progress-bar" style="height: 6px;">
+                                    <div class="progress-fill" data-width="88" style="width: 0;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; margin-bottom: 0.8rem;">Oliver - Grade 1</div>
+                            <div style="margin-bottom: 0.5rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.9rem;">Reading</span>
+                                    <span style="font-size: 0.9rem; color: var(--primary);">90%</span>
+                                </div>
+                                <div class="progress-bar" style="height: 6px;">
+                                    <div class="progress-fill" data-width="90" style="width: 0;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.9rem;">Mathematics</span>
+                                    <span style="font-size: 0.9rem; color: var(--primary);">85%</span>
+                                </div>
+                                <div class="progress-bar" style="height: 6px;">
+                                    <div class="progress-fill" data-width="85" style="width: 0; background: #f4a460;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+   <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<!-- Firebase Config -->
+<script src="firebase-config.js"></script>
+
+<!-- Replace portal.js with portal-firebase.js -->
+<script src="portal-firebase.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = initDashboard();
+            
+            if (currentUser && currentUser.type !== 'parent') {
+                alert('Access denied. This is a parent dashboard.');
+                window.location.href = `dashboard-${currentUser.type}.html`;
+            }
+        });
+    </script>
+</body>
+</html>

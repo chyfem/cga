@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Chyfem Great Academy</title>
+    <link rel="stylesheet" href="portal-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="dashboard-header">
+                <div class="logo">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">CHYFEM</span>
+                </div>
+            </div>
+            
+            <nav class="dashboard-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>Students</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">👨‍🏫</span>
+                    <span>Teachers</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span>Classes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Finance</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Events</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="dashboard-footer">
+                <button class="logout-btn" id="logoutBtn">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-topbar">
+                <div class="welcome-text">
+                    <h1>Admin Dashboard</h1>
+                    <p>Complete overview of Chyfem Great Academy</p>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">A</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">Administrator</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">System Admin</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <!-- Overview Stats -->
+                <div class="card-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">👥</span>
+                            <div>
+                                <h3 class="card-title">Total Students</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">500</div>
+                        <div class="card-label">+25 this month</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">👨‍🏫</span>
+                            <div>
+                                <h3 class="card-title">Teachers</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">50</div>
+                        <div class="card-label">All sections</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <div>
+                                <h3 class="card-title">Classes</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">35</div>
+                        <div class="card-label">Active classes</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">💰</span>
+                            <div>
+                                <h3 class="card-title">Revenue</h3>
+                            </div>
+                        </div>
+                        <div class="card-value" style="font-size: 2rem;">$125K</div>
+                        <div class="card-label">This month</div>
+                    </div>
+                </div>
+                
+                <!-- Section Breakdown -->
+                <div class="dashboard-card" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📊 Section Distribution</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(255, 107, 157, 0.05)); border-radius: 15px;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🧸</div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #ff6b9d; font-family: 'Playfair Display', serif;">120</div>
+                            <div style="font-weight: 600; margin-top: 0.5rem;">Nursery Section</div>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">Ages 2-5 • 8 Classes</div>
+                        </div>
+                        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(78, 205, 196, 0.05)); border-radius: 15px;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #4ecdc4; font-family: 'Playfair Display', serif;">230</div>
+                            <div style="font-weight: 600; margin-top: 0.5rem;">Primary Section</div>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">Ages 6-11 • 15 Classes</div>
+                        </div>
+                        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05)); border-radius: 15px;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #6c5ce7; font-family: 'Playfair Display', serif;">150</div>
+                            <div style="font-weight: 600; margin-top: 0.5rem;">College Section</div>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">Ages 12-18 • 12 Classes</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity & Quick Actions -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <!-- Recent Activity -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">🔔 Recent Activity</h3>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">New Student Enrollment</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">John Doe enrolled in Primary Section Grade 3</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">2 hours ago</div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Teacher Assignment</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Mrs. Johnson assigned to Grade 5A Mathematics</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">5 hours ago</div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Payment Received</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Tuition payment from Parent #123 - $500</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">1 day ago</div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Staff Meeting</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Weekly staff meeting completed with all departments</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">2 days ago</div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">System Update</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Portal system updated to version 2.5.1</div>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-light);">3 days ago</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">⚡ Quick Actions</h3>
+                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
+                            <span style="font-size: 1.3rem;">➕</span>
+                            <span>Add New Student</span>
+                        </button>
+                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: var(--secondary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
+                            <span style="font-size: 1.3rem;">👨‍🏫</span>
+                            <span>Add Teacher</span>
+                        </button>
+                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: #6c5ce7; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
+                            <span style="font-size: 1.3rem;">📚</span>
+                            <span>Create Class</span>
+                        </button>
+                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: #28a745; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
+                            <span style="font-size: 1.3rem;">📊</span>
+                            <span>Generate Report</span>
+                        </button>
+                        <button style="width: 100%; padding: 1rem; background: #17a2b8; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
+                            <span style="font-size: 1.3rem;">📅</span>
+                            <span>Schedule Event</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Performance Metrics -->
+                <div class="dashboard-card" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📈 Performance Metrics</h3>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Overall Student Attendance</span>
+                                <span style="font-weight: 600; color: var(--primary);">94%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="94" style="width: 0; background: #28a745;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Teacher Satisfaction</span>
+                                <span style="font-weight: 600; color: var(--primary);">92%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="92" style="width: 0;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Parent Satisfaction</span>
+                                <span style="font-weight: 600; color: var(--primary);">96%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="96" style="width: 0; background: #28a745;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Academic Performance</span>
+                                <span style="font-weight: 600; color: var(--primary);">88%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="88" style="width: 0; background: #f4a460;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Fee Collection Rate</span>
+                                <span style="font-weight: 600; color: var(--primary);">97%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="97" style="width: 0; background: #28a745;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alerts & Notifications -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">⚠️ Alerts</h3>
+                        <div style="padding: 1rem; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px; margin-bottom: 1rem;">
+                            <div style="font-weight: 600; color: #856404;">3 Staff Positions Open</div>
+                            <div style="font-size: 0.9rem; color: #856404; margin-top: 0.3rem;">Urgently need to fill teaching positions</div>
+                        </div>
+                        <div style="padding: 1rem; background: #f8d7da; border-left: 4px solid #dc3545; border-radius: 8px; margin-bottom: 1rem;">
+                            <div style="font-weight: 600; color: #721c24;">15 Payment Reminders</div>
+                            <div style="font-size: 0.9rem; color: #721c24; margin-top: 0.3rem;">Outstanding fee payments to be collected</div>
+                        </div>
+                        <div style="padding: 1rem; background: #d1ecf1; border-left: 4px solid #17a2b8; border-radius: 8px;">
+                            <div style="font-weight: 600; color: #0c5460;">Mid-term Exams Coming</div>
+                            <div style="font-size: 0.9rem; color: #0c5460; margin-top: 0.3rem;">Schedule and preparations needed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📌 Upcoming Tasks</h3>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Budget Review Meeting</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Q1 financial review with board</div>
+                            </div>
+                            <span class="badge badge-warning">Tomorrow</span>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Teacher Training Workshop</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Professional development session</div>
+                            </div>
+                            <span class="badge badge-info">Feb 25</span>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Infrastructure Inspection</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Quarterly facilities check</div>
+                            </div>
+                            <span class="badge badge-info">Mar 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+   <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<!-- Firebase Config -->
+<script src="firebase-config.js"></script>
+
+<!-- Replace portal.js with portal-firebase.js -->
+<script src="portal-firebase.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = initDashboard();
+            
+            if (currentUser && currentUser.type !== 'admin') {
+                alert('Access denied. This is an admin dashboard.');
+                window.location.href = `dashboard-${currentUser.type}.html`;
+            }
+        });
+    </script>
+</body>
+</html>

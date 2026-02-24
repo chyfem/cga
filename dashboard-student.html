@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Chyfem Great Academy</title>
+    <link rel="stylesheet" href="portal-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="dashboard-header">
+                <div class="logo">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">CHYFEM</span>
+                </div>
+            </div>
+            
+            <nav class="dashboard-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span>My Courses</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Assignments</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Grades</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Schedule</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📖</span>
+                    <span>Library</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Messages</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="dashboard-footer">
+                <button class="logout-btn" id="logoutBtn">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-topbar">
+                <div class="welcome-text">
+                    <h1>Welcome back, <span id="welcomeName">Student</span>!</h1>
+                    <p>Here's what's happening with your learning today</p>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">S</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">Student Name</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Student</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <!-- Quick Stats -->
+                <div class="card-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">📊</span>
+                            <div>
+                                <h3 class="card-title">Average Score</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">85</div>
+                        <div class="card-label">Overall Performance</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="85" style="width: 0;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">📝</span>
+                            <div>
+                                <h3 class="card-title">Assignments</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">12</div>
+                        <div class="card-label">3 Pending Submissions</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="75" style="width: 0; background: #f4a460;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">✅</span>
+                            <div>
+                                <h3 class="card-title">Attendance</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">95</div>
+                        <div class="card-label">% This Semester</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="95" style="width: 0; background: #28a745;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">🏆</span>
+                            <div>
+                                <h3 class="card-title">Achievements</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">8</div>
+                        <div class="card-label">Badges Earned</div>
+                        <div style="margin-top: 1rem; font-size: 1.5rem;">
+                            🥇 🥈 🥉 ⭐ 📚 🎯 💡 🌟
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activities -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <!-- Pending Assignments -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Pending Assignments</h3>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Mathematics - Chapter 5 Exercises</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Due: Tomorrow, 11:59 PM</div>
+                            </div>
+                            <span class="badge badge-warning">Pending</span>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Science Project - Solar System Model</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Due: Feb 25, 2026</div>
+                            </div>
+                            <span class="badge badge-info">In Progress</span>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">English Essay - My Summer Vacation</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Due: Today, 5:00 PM</div>
+                            </div>
+                            <span class="badge badge-danger">Urgent</span>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">History - World War II Research</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">Submitted on Feb 15, 2026</div>
+                            </div>
+                            <span class="badge badge-success">Completed</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Announcements -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Announcements</h3>
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="font-weight: 600; color: var(--primary);">🏃 Sports Day Event</div>
+                            <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.3rem;">February 20, 2026</div>
+                            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Annual sports competition. All students must attend.</p>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="font-weight: 600; color: var(--primary);">👨‍👩‍👧 Parent-Teacher Meeting</div>
+                            <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.3rem;">February 22, 2026</div>
+                            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Discuss student progress with teachers.</p>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--primary);">📝 Mid-term Exams</div>
+                            <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.3rem;">March 1-5, 2026</div>
+                            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Prepare well for your examinations.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Subject Grades -->
+                <div class="dashboard-card" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Subject Performance</h3>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Mathematics</span>
+                                <span style="font-weight: 600; color: var(--primary);">92% (A)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="92" style="width: 0;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">English Language</span>
+                                <span style="font-weight: 600; color: var(--primary);">87% (B+)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="87" style="width: 0; background: #f4a460;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Science</span>
+                                <span style="font-weight: 600; color: var(--primary);">90% (A-)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="90" style="width: 0;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">History</span>
+                                <span style="font-weight: 600; color: var(--primary);">85% (B)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="85" style="width: 0; background: #ffc107;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Physical Education</span>
+                                <span style="font-weight: 600; color: var(--primary);">95% (A+)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="95" style="width: 0; background: #28a745;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<!-- Firebase Config -->
+<script src="firebase-config.js"></script>
+
+<!-- Replace portal.js with portal-firebase.js -->
+<script src="portal-firebase.js"></script>
+    <script>
+        // Initialize dashboard on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = initDashboard();
+            
+            if (currentUser && currentUser.type !== 'student') {
+                alert('Access denied. This is a student dashboard.');
+                window.location.href = `dashboard-${currentUser.type}.html`;
+            }
+        });
+    </script>
+</body>
+</html>

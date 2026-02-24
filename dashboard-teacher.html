@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Chyfem Great Academy</title>
+    <link rel="stylesheet" href="portal-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="dashboard-header">
+                <div class="logo">
+                    <span class="logo-icon">🎓</span>
+                    <span class="logo-text">CHYFEM</span>
+                </div>
+            </div>
+            
+            <nav class="dashboard-nav">
+                <a href="#" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>My Classes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Assignments</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Gradebook</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Schedule</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📚</span>
+                    <span>Resources</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    <span>Attendance</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Messages</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="dashboard-footer">
+                <button class="logout-btn" id="logoutBtn">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-topbar">
+                <div class="welcome-text">
+                    <h1>Welcome back, <span id="welcomeName">Teacher</span>!</h1>
+                    <p>Managing your classes effectively</p>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">T</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">Teacher Name</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Teacher</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <!-- Quick Stats -->
+                <div class="card-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">👥</span>
+                            <div>
+                                <h3 class="card-title">Total Students</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">120</div>
+                        <div class="card-label">Across 5 Classes</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">📝</span>
+                            <div>
+                                <h3 class="card-title">Pending Reviews</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">45</div>
+                        <div class="card-label">Assignments to Grade</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">📚</span>
+                            <div>
+                                <h3 class="card-title">Lessons Today</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">4</div>
+                        <div class="card-label">Classes Scheduled</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <span class="card-icon">⭐</span>
+                            <div>
+                                <h3 class="card-title">Class Average</h3>
+                            </div>
+                        </div>
+                        <div class="card-value">87</div>
+                        <div class="card-label">% Overall Performance</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="87" style="width: 0;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Today's Schedule & Classes -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <!-- Today's Classes -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📅 Today's Schedule</h3>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Grade 4A - Mathematics</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">25 students • Room 203</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600; color: var(--primary);">9:00 AM</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">60 mins</div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Grade 4B - Mathematics</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">23 students • Room 203</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600; color: var(--primary);">11:00 AM</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">60 mins</div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Grade 5A - Mathematics</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">28 students • Room 203</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600; color: var(--primary);">2:00 PM</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">60 mins</div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div>
+                                <div style="font-weight: 600;">Grade 5B - Mathematics</div>
+                                <div style="color: var(--text-light); font-size: 0.9rem;">24 students • Room 203</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-weight: 600; color: var(--primary);">3:30 PM</div>
+                                <div style="font-size: 0.85rem; color: var(--text-light);">60 mins</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pending Tasks -->
+                    <div class="dashboard-card">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">⏰ Pending Tasks</h3>
+                        <div style="margin-bottom: 1.5rem; padding: 1rem; background: #fff3cd; border-radius: 10px;">
+                            <div style="font-weight: 600; color: #856404;">Grade Assignments</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #856404;">45 assignments pending review</div>
+                            <div style="margin-top: 0.8rem;">
+                                <button style="padding: 0.5rem 1rem; background: #ffc107; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Review Now</button>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1.5rem; padding: 1rem; background: #d1ecf1; border-radius: 10px;">
+                            <div style="font-weight: 600; color: #0c5460;">Prepare Lesson Plans</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #0c5460;">3 lesson plans due this week</div>
+                            <div style="margin-top: 0.8rem;">
+                                <button style="padding: 0.5rem 1rem; background: #17a2b8; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">Start Planning</button>
+                            </div>
+                        </div>
+                        <div style="padding: 1rem; background: #f8d7da; border-radius: 10px;">
+                            <div style="font-weight: 600; color: #721c24;">Parent Meetings</div>
+                            <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #721c24;">2 meetings scheduled tomorrow</div>
+                            <div style="margin-top: 0.8rem;">
+                                <button style="padding: 0.5rem 1rem; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">View Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Class Performance Overview -->
+                <div class="dashboard-card" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📊 Class Performance Overview</h3>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Grade 4A (25 students)</span>
+                                <span style="font-weight: 600; color: var(--primary);">Average: 89%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="89" style="width: 0;"></div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light);">
+                                Attendance: 96% • Assignments Submitted: 92%
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Grade 4B (23 students)</span>
+                                <span style="font-weight: 600; color: var(--primary);">Average: 85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="85" style="width: 0; background: #f4a460;"></div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light);">
+                                Attendance: 94% • Assignments Submitted: 87%
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Grade 5A (28 students)</span>
+                                <span style="font-weight: 600; color: var(--primary);">Average: 91%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="91" style="width: 0; background: #28a745;"></div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light);">
+                                Attendance: 97% • Assignments Submitted: 95%
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 600;">Grade 5B (24 students)</span>
+                                <span style="font-weight: 600; color: var(--primary);">Average: 83%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="83" style="width: 0; background: #ffc107;"></div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light);">
+                                Attendance: 91% • Assignments Submitted: 84%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="dashboard-card" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">🔔 Recent Activity</h3>
+                    <div class="list-item">
+                        <div>
+                            <div style="font-weight: 600;">New assignment submitted</div>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">John Doe - Grade 4A submitted Math homework</div>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-light);">2 mins ago</div>
+                    </div>
+                    <div class="list-item">
+                        <div>
+                            <div style="font-weight: 600;">Parent message received</div>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">Mrs. Smith inquiring about Emma's progress</div>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-light);">1 hour ago</div>
+                    </div>
+                    <div class="list-item">
+                        <div>
+                            <div style="font-weight: 600;">Lesson plan approved</div>
+                            <div style="color: var(--text-light); font-size: 0.9rem;">Week 8 Mathematics lesson plan approved by principal</div>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-light);">3 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<!-- Firebase Config -->
+<script src="firebase-config.js"></script>
+
+<!-- Replace portal.js with portal-firebase.js -->
+<script src="portal-firebase.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = initDashboard();
+            
+            if (currentUser && currentUser.type !== 'teacher') {
+                alert('Access denied. This is a teacher dashboard.');
+                window.location.href = `dashboard-${currentUser.type}.html`;
+            }
+        });
+    </script>
+</body>
+</html>
