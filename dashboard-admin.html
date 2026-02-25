@@ -6,6 +6,213 @@
     <title>Admin Dashboard - Chyfem Great Academy</title>
     <link rel="stylesheet" href="portal-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            color: var(--primary);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+        }
+        
+        .close-modal:hover {
+            color: var(--danger);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Work Sans', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #28a745;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .data-table th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .data-table tr:hover {
+            background: var(--light);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-small {
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .btn-edit {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .stats-updating {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
 </head>
 <body>
     <div class="dashboard-container">
@@ -19,35 +226,31 @@
             </div>
             
             <nav class="dashboard-nav">
-                <a href="#" class="nav-item active">
+                <a href="#" class="nav-item active" data-section="overview">
                     <span class="nav-icon">🏠</span>
                     <span>Dashboard</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="students">
                     <span class="nav-icon">👥</span>
                     <span>Students</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="teachers">
                     <span class="nav-icon">👨‍🏫</span>
                     <span>Teachers</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="classes">
                     <span class="nav-icon">📚</span>
                     <span>Classes</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">💰</span>
-                    <span>Finance</span>
+                <a href="#" class="nav-item" data-section="announcements">
+                    <span class="nav-icon">📢</span>
+                    <span>Announcements</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="reports">
                     <span class="nav-icon">📊</span>
                     <span>Reports</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon">📅</span>
-                    <span>Events</span>
-                </a>
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" data-section="settings">
                     <span class="nav-icon">⚙️</span>
                     <span>Settings</span>
                 </a>
@@ -77,8 +280,9 @@
                 </div>
             </div>
             
-            <div class="dashboard-content">
-                <!-- Overview Stats -->
+            <!-- Overview Section -->
+            <div id="overviewSection" class="dashboard-content">
+                <!-- Quick Stats -->
                 <div class="card-grid">
                     <div class="dashboard-card">
                         <div class="card-header">
@@ -87,8 +291,8 @@
                                 <h3 class="card-title">Total Students</h3>
                             </div>
                         </div>
-                        <div class="card-value">500</div>
-                        <div class="card-label">+25 this month</div>
+                        <div class="card-value" id="totalStudents">0</div>
+                        <div class="card-label">Active students</div>
                     </div>
                     
                     <div class="dashboard-card">
@@ -98,7 +302,7 @@
                                 <h3 class="card-title">Teachers</h3>
                             </div>
                         </div>
-                        <div class="card-value">50</div>
+                        <div class="card-value" id="totalTeachers">0</div>
                         <div class="card-label">All sections</div>
                     </div>
                     
@@ -109,251 +313,303 @@
                                 <h3 class="card-title">Classes</h3>
                             </div>
                         </div>
-                        <div class="card-value">35</div>
+                        <div class="card-value" id="totalClasses">0</div>
                         <div class="card-label">Active classes</div>
                     </div>
                     
                     <div class="dashboard-card">
                         <div class="card-header">
-                            <span class="card-icon">💰</span>
+                            <span class="card-icon">📢</span>
                             <div>
-                                <h3 class="card-title">Revenue</h3>
+                                <h3 class="card-title">Announcements</h3>
                             </div>
                         </div>
-                        <div class="card-value" style="font-size: 2rem;">$125K</div>
-                        <div class="card-label">This month</div>
+                        <div class="card-value" id="totalAnnouncements">0</div>
+                        <div class="card-label">Active announcements</div>
                     </div>
                 </div>
                 
-                <!-- Section Breakdown -->
+                <!-- Quick Actions -->
                 <div class="dashboard-card" style="margin-top: 2rem;">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📊 Section Distribution</h3>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
-                        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(255, 107, 157, 0.05)); border-radius: 15px;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">🧸</div>
-                            <div style="font-size: 2.5rem; font-weight: bold; color: #ff6b9d; font-family: 'Playfair Display', serif;">120</div>
-                            <div style="font-weight: 600; margin-top: 0.5rem;">Nursery Section</div>
-                            <div style="color: var(--text-light); font-size: 0.9rem;">Ages 2-5 • 8 Classes</div>
-                        </div>
-                        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(78, 205, 196, 0.05)); border-radius: 15px;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
-                            <div style="font-size: 2.5rem; font-weight: bold; color: #4ecdc4; font-family: 'Playfair Display', serif;">230</div>
-                            <div style="font-weight: 600; margin-top: 0.5rem;">Primary Section</div>
-                            <div style="color: var(--text-light); font-size: 0.9rem;">Ages 6-11 • 15 Classes</div>
-                        </div>
-                        <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.05)); border-radius: 15px;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
-                            <div style="font-size: 2.5rem; font-weight: bold; color: #6c5ce7; font-family: 'Playfair Display', serif;">150</div>
-                            <div style="font-weight: 600; margin-top: 0.5rem;">College Section</div>
-                            <div style="color: var(--text-light); font-size: 0.9rem;">Ages 12-18 • 12 Classes</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Recent Activity & Quick Actions -->
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-top: 2rem;">
-                    <!-- Recent Activity -->
-                    <div class="dashboard-card">
-                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">🔔 Recent Activity</h3>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">New Student Enrollment</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">John Doe enrolled in Primary Section Grade 3</div>
-                            </div>
-                            <div style="font-size: 0.85rem; color: var(--text-light);">2 hours ago</div>
-                        </div>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">Teacher Assignment</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">Mrs. Johnson assigned to Grade 5A Mathematics</div>
-                            </div>
-                            <div style="font-size: 0.85rem; color: var(--text-light);">5 hours ago</div>
-                        </div>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">Payment Received</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">Tuition payment from Parent #123 - $500</div>
-                            </div>
-                            <div style="font-size: 0.85rem; color: var(--text-light);">1 day ago</div>
-                        </div>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">Staff Meeting</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">Weekly staff meeting completed with all departments</div>
-                            </div>
-                            <div style="font-size: 0.85rem; color: var(--text-light);">2 days ago</div>
-                        </div>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">System Update</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">Portal system updated to version 2.5.1</div>
-                            </div>
-                            <div style="font-size: 0.85rem; color: var(--text-light);">3 days ago</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quick Actions -->
-                    <div class="dashboard-card">
-                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">⚡ Quick Actions</h3>
-                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
-                            <span style="font-size: 1.3rem;">➕</span>
-                            <span>Add New Student</span>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">⚡ Quick Actions</h3>
+                    <div class="card-grid">
+                        <button class="btn-submit" onclick="openAddStudentModal()">
+                            <span style="font-size: 1.3rem;">➕</span> Add New Student
                         </button>
-                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: var(--secondary); color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
-                            <span style="font-size: 1.3rem;">👨‍🏫</span>
-                            <span>Add Teacher</span>
+                        <button class="btn-submit" style="background: var(--secondary);" onclick="openAddTeacherModal()">
+                            <span style="font-size: 1.3rem;">👨‍🏫</span> Add Teacher
                         </button>
-                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: #6c5ce7; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
-                            <span style="font-size: 1.3rem;">📚</span>
-                            <span>Create Class</span>
+                        <button class="btn-submit" style="background: #6c5ce7;" onclick="openAddClassModal()">
+                            <span style="font-size: 1.3rem;">📚</span> Create Class
                         </button>
-                        <button style="width: 100%; margin-bottom: 1rem; padding: 1rem; background: #28a745; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
-                            <span style="font-size: 1.3rem;">📊</span>
-                            <span>Generate Report</span>
-                        </button>
-                        <button style="width: 100%; padding: 1rem; background: #17a2b8; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.8rem;">
-                            <span style="font-size: 1.3rem;">📅</span>
-                            <span>Schedule Event</span>
+                        <button class="btn-submit" style="background: #17a2b8;" onclick="openAddAnnouncementModal()">
+                            <span style="font-size: 1.3rem;">📢</span> New Announcement
                         </button>
                     </div>
                 </div>
                 
-                <!-- Performance Metrics -->
+                <!-- Recent Activity -->
                 <div class="dashboard-card" style="margin-top: 2rem;">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📈 Performance Metrics</h3>
-                    <div style="display: grid; gap: 1.5rem;">
-                        <div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                <span style="font-weight: 600;">Overall Student Attendance</span>
-                                <span style="font-weight: 600; color: var(--primary);">94%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-width="94" style="width: 0; background: #28a745;"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                <span style="font-weight: 600;">Teacher Satisfaction</span>
-                                <span style="font-weight: 600; color: var(--primary);">92%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-width="92" style="width: 0;"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                <span style="font-weight: 600;">Parent Satisfaction</span>
-                                <span style="font-weight: 600; color: var(--primary);">96%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-width="96" style="width: 0; background: #28a745;"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                <span style="font-weight: 600;">Academic Performance</span>
-                                <span style="font-weight: 600; color: var(--primary);">88%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-width="88" style="width: 0; background: #f4a460;"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                <span style="font-weight: 600;">Fee Collection Rate</span>
-                                <span style="font-weight: 600; color: var(--primary);">97%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-width="97" style="width: 0; background: #28a745;"></div>
-                            </div>
-                        </div>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">🔔 Recent Activity</h3>
+                    <div id="recentActivityList">
+                        <p style="text-align: center; color: var(--text-light); padding: 2rem;">Loading activity...</p>
                     </div>
                 </div>
-                
-                <!-- Alerts & Notifications -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
-                    <div class="dashboard-card">
-                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">⚠️ Alerts</h3>
-                        <div style="padding: 1rem; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px; margin-bottom: 1rem;">
-                            <div style="font-weight: 600; color: #856404;">3 Staff Positions Open</div>
-                            <div style="font-size: 0.9rem; color: #856404; margin-top: 0.3rem;">Urgently need to fill teaching positions</div>
-                        </div>
-                        <div style="padding: 1rem; background: #f8d7da; border-left: 4px solid #dc3545; border-radius: 8px; margin-bottom: 1rem;">
-                            <div style="font-weight: 600; color: #721c24;">15 Payment Reminders</div>
-                            <div style="font-size: 0.9rem; color: #721c24; margin-top: 0.3rem;">Outstanding fee payments to be collected</div>
-                        </div>
-                        <div style="padding: 1rem; background: #d1ecf1; border-left: 4px solid #17a2b8; border-radius: 8px;">
-                            <div style="font-weight: 600; color: #0c5460;">Mid-term Exams Coming</div>
-                            <div style="font-size: 0.9rem; color: #0c5460; margin-top: 0.3rem;">Schedule and preparations needed</div>
-                        </div>
+            </div>
+            
+            <!-- Students Section -->
+            <div id="studentsSection" class="dashboard-content" style="display: none;">
+                <div class="dashboard-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.5rem;">👥 All Students</h3>
+                        <button class="btn-submit" style="width: auto; padding: 0.8rem 1.5rem;" onclick="openAddStudentModal()">
+                            ➕ Add Student
+                        </button>
                     </div>
-                    
-                    <div class="dashboard-card">
-                        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">📌 Upcoming Tasks</h3>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">Budget Review Meeting</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">Q1 financial review with board</div>
-                            </div>
-                            <span class="badge badge-warning">Tomorrow</span>
-                        </div>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">Teacher Training Workshop</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">Professional development session</div>
-                            </div>
-                            <span class="badge badge-info">Feb 25</span>
-                        </div>
-                        <div class="list-item">
-                            <div>
-                                <div style="font-weight: 600;">Infrastructure Inspection</div>
-                                <div style="color: var(--text-light); font-size: 0.9rem;">Quarterly facilities check</div>
-                            </div>
-                            <span class="badge badge-info">Mar 1</span>
-                        </div>
+                    <div id="studentsTableContainer">
+                        <p style="text-align: center; padding: 2rem;">Loading students...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Teachers Section -->
+            <div id="teachersSection" class="dashboard-content" style="display: none;">
+                <div class="dashboard-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.5rem;">👨‍🏫 All Teachers</h3>
+                        <button class="btn-submit" style="width: auto; padding: 0.8rem 1.5rem;" onclick="openAddTeacherModal()">
+                            ➕ Add Teacher
+                        </button>
+                    </div>
+                    <div id="teachersTableContainer">
+                        <p style="text-align: center; padding: 2rem;">Loading teachers...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Classes Section -->
+            <div id="classesSection" class="dashboard-content" style="display: none;">
+                <div class="dashboard-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.5rem;">📚 All Classes</h3>
+                        <button class="btn-submit" style="width: auto; padding: 0.8rem 1.5rem;" onclick="openAddClassModal()">
+                            ➕ Create Class
+                        </button>
+                    </div>
+                    <div id="classesTableContainer">
+                        <p style="text-align: center; padding: 2rem;">Loading classes...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Announcements Section -->
+            <div id="announcementsSection" class="dashboard-content" style="display: none;">
+                <div class="dashboard-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.5rem;">📢 Announcements</h3>
+                        <button class="btn-submit" style="width: auto; padding: 0.8rem 1.5rem;" onclick="openAddAnnouncementModal()">
+                            ➕ New Announcement
+                        </button>
+                    </div>
+                    <div id="announcementsTableContainer">
+                        <p style="text-align: center; padding: 2rem;">Loading announcements...</p>
                     </div>
                 </div>
             </div>
         </main>
     </div>
     
-    <!-- Firebase SDK (if using Firebase) -->
+    <!-- Add Student Modal -->
+    <div id="addStudentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>➕ Add New Student</h2>
+                <button class="close-modal" onclick="closeModal('addStudentModal')">&times;</button>
+            </div>
+            <div id="studentFormMessage"></div>
+            <form id="addStudentForm" onsubmit="handleAddStudent(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" name="name" required placeholder="e.g. John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required placeholder="student@chyfemacademy.edu">
+                </div>
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" name="password" required placeholder="Minimum 6 characters" minlength="6">
+                </div>
+                <div class="form-group">
+                    <label>Section *</label>
+                    <select name="section" required>
+                        <option value="">Select Section</option>
+                        <option value="nursery">Nursery</option>
+                        <option value="primary">Primary</option>
+                        <option value="college">College</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Grade/Class *</label>
+                    <input type="text" name="grade" required placeholder="e.g. Grade 4, Nursery 2">
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dateOfBirth">
+                </div>
+                <div class="form-group">
+                    <label>Parent Email (optional)</label>
+                    <input type="email" name="parentEmail" placeholder="parent@example.com">
+                </div>
+                <button type="submit" class="btn-submit" id="submitStudentBtn">
+                    Add Student
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Add Teacher Modal -->
+    <div id="addTeacherModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>👨‍🏫 Add New Teacher</h2>
+                <button class="close-modal" onclick="closeModal('addTeacherModal')">&times;</button>
+            </div>
+            <div id="teacherFormMessage"></div>
+            <form id="addTeacherForm" onsubmit="handleAddTeacher(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" name="name" required placeholder="e.g. Mrs. Sarah Johnson">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required placeholder="teacher@chyfemacademy.edu">
+                </div>
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" name="password" required placeholder="Minimum 6 characters" minlength="6">
+                </div>
+                <div class="form-group">
+                    <label>Subject/Department *</label>
+                    <input type="text" name="subject" required placeholder="e.g. Mathematics, English">
+                </div>
+                <div class="form-group">
+                    <label>Section *</label>
+                    <select name="section" required>
+                        <option value="">Select Section</option>
+                        <option value="nursery">Nursery</option>
+                        <option value="primary">Primary</option>
+                        <option value="college">College</option>
+                        <option value="all">All Sections</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" placeholder="+234 800 000 0000">
+                </div>
+                <button type="submit" class="btn-submit" id="submitTeacherBtn">
+                    Add Teacher
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Add Class Modal -->
+    <div id="addClassModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📚 Create New Class</h2>
+                <button class="close-modal" onclick="closeModal('addClassModal')">&times;</button>
+            </div>
+            <div id="classFormMessage"></div>
+            <form id="addClassForm" onsubmit="handleAddClass(event)">
+                <div class="form-group">
+                    <label>Class Name *</label>
+                    <input type="text" name="name" required placeholder="e.g. Grade 4A, Nursery Blue">
+                </div>
+                <div class="form-group">
+                    <label>Section *</label>
+                    <select name="section" required>
+                        <option value="">Select Section</option>
+                        <option value="nursery">Nursery</option>
+                        <option value="primary">Primary</option>
+                        <option value="college">College</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Grade Level *</label>
+                    <input type="text" name="grade" required placeholder="e.g. 4, Nursery 2">
+                </div>
+                <div class="form-group">
+                    <label>Room Number</label>
+                    <input type="text" name="room" placeholder="e.g. 203, A-Block">
+                </div>
+                <div class="form-group">
+                    <label>Capacity</label>
+                    <input type="number" name="capacity" placeholder="e.g. 30" min="1">
+                </div>
+                <button type="submit" class="btn-submit" id="submitClassBtn">
+                    Create Class
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Add Announcement Modal -->
+    <div id="addAnnouncementModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📢 New Announcement</h2>
+                <button class="close-modal" onclick="closeModal('addAnnouncementModal')">&times;</button>
+            </div>
+            <div id="announcementFormMessage"></div>
+            <form id="addAnnouncementForm" onsubmit="handleAddAnnouncement(event)">
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" name="title" required placeholder="e.g. Sports Day Event">
+                </div>
+                <div class="form-group">
+                    <label>Content *</label>
+                    <textarea name="content" required rows="5" placeholder="Write your announcement here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Target Audience *</label>
+                    <select name="targetAudience" required>
+                        <option value="all">Everyone</option>
+                        <option value="students">Students Only</option>
+                        <option value="teachers">Teachers Only</option>
+                        <option value="parents">Parents Only</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Section</label>
+                    <select name="section">
+                        <option value="all">All Sections</option>
+                        <option value="nursery">Nursery</option>
+                        <option value="primary">Primary</option>
+                        <option value="college">College</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select name="priority">
+                        <option value="normal">Normal</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit" id="submitAnnouncementBtn">
+                    Post Announcement
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="firebase-config.js"></script>
-    <script src="portal-firebase.js"></script>
-    
-    <script>
-        window.addEventListener('DOMContentLoaded', async () => {
-            // Get current user from session
-            let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-            
-            // Debug: log what we have
-            console.log('Current user from session:', currentUser);
-            
-            if (!currentUser) {
-                console.log('No user in session, redirecting to login');
-                alert('Please login first');
-                window.location.href = 'portal.html';
-                return;
-            }
-            
-            // Check if user type is admin
-            const userType = currentUser.type || currentUser.role;
-            console.log('User type:', userType);
-            
-            if (userType !== 'admin') {
-                console.log('User is not admin, redirecting');
-                alert('Access denied. This is an admin dashboard. Your account type is: ' + userType);
-                window.location.href = `dashboard-${userType}.html`;
-                return;
-            }
-            
-            // User is admin, initialize dashboard
-            console.log('Admin user verified, initializing dashboard');
-            initDashboard();
-        });
-    </script>
+    <script src="admin-functions.js"></script>
 </body>
 </html>
