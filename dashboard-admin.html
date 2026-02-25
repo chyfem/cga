@@ -317,24 +317,42 @@
         </main>
     </div>
     
-   <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-<!-- Firebase Config -->
-<script src="firebase-config.js"></script>
-
-<!-- Replace portal.js with portal-firebase.js -->
-<script src="portal-firebase.js"></script>
+    <!-- Firebase SDK (if using Firebase) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="portal-firebase.js"></script>
+    
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const currentUser = initDashboard();
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Get current user from session
+            let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
             
-            if (currentUser && currentUser.type !== 'admin') {
-                alert('Access denied. This is an admin dashboard.');
-                window.location.href = `dashboard-${currentUser.type}.html`;
+            // Debug: log what we have
+            console.log('Current user from session:', currentUser);
+            
+            if (!currentUser) {
+                console.log('No user in session, redirecting to login');
+                alert('Please login first');
+                window.location.href = 'portal.html';
+                return;
             }
+            
+            // Check if user type is admin
+            const userType = currentUser.type || currentUser.role;
+            console.log('User type:', userType);
+            
+            if (userType !== 'admin') {
+                console.log('User is not admin, redirecting');
+                alert('Access denied. This is an admin dashboard. Your account type is: ' + userType);
+                window.location.href = `dashboard-${userType}.html`;
+                return;
+            }
+            
+            // User is admin, initialize dashboard
+            console.log('Admin user verified, initializing dashboard');
+            initDashboard();
         });
     </script>
 </body>

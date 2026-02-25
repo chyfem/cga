@@ -290,23 +290,21 @@
         </main>
     </div>
     
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-<!-- Firebase Config -->
-<script src="firebase-config.js"></script>
-
-<!-- Replace portal.js with portal-firebase.js -->
-<script src="portal-firebase.js"></script>
+    <!-- Firebase SDK (if using Firebase) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="portal-firebase.js"></script>
+    
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const currentUser = initDashboard();
+            const userType = currentUser ? (currentUser.type || currentUser.role) : null;
             
-            if (currentUser && currentUser.type !== 'teacher') {
-                alert('Access denied. This is a teacher dashboard.');
-                window.location.href = `dashboard-${currentUser.type}.html`;
+            if (currentUser && userType !== 'teacher') {
+                alert('Access denied. This is a teacher dashboard. Your account type is: ' + userType);
+                window.location.href = `dashboard-${userType}.html`;
             }
         });
     </script>
